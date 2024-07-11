@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle Financeiro</title>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Controle Financeiro</h1>
+    </div>
+    <div class="section">
+    
+      <div class="item">
+        <h3>Saída</h3>
+        <p>R$ 1.700,00</p>
+      </div>
+      <div class="item">
+        <h3>Total</h3>
+        <p>R$ 1.700,00</p>
+      </div>
+      <div class="item">
+        <h3>Total</h3>
+        <p>R$ 1.700,00</p>
+      </div>
+    </div>
+    <div class="section">
+      <form class="form" method="POST" action="/add">
+        <div class="input-group">
+          <p>Mês:</p>
+        <select id="mes" name="mes">
+          <option value="">Selecione o mês</option>
+          <option value="1">Janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="5">Maio</option>
+          <option value="6">Junho</option>
+          <option value="7">Julho</option>
+          <option value="8">Agosto</option>
+          <option value="9">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+          <label for="descricao">Descrição:</label>
+          <input type="text" id="descricao" name="descricao" placeholder="Descrição">
+        </div>
+        <div class="input-group">
+          <label for="valor">Valor:</label>
+          <input type="text" id="valor" name="valor" placeholder="Valor">
+        </div>
+        <div class="input-group">
+          <input type="radio" id="entrada" name="tipo" value="entrada">
+          <label for="entrada">Entrada</label>
+          <input type="radio" id="saida" name="tipo" value="saida">
+          <label for="saida">Saída</label>
+        </div>
+        <button type="submit" class="button">Adicionar</button>
+      </form>
+    </div>
+    
+    <div class="movimentos">
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Tipo</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {{#each gastos}}
+          <tr>
+            <td>{{descricao}}</td>
+            <td>{{valor}}</td>
+            <td>{{tipo}}</td>
+            <td><a href="/deletar/{{id}}"><button class="deletar">Deletar</button></a></td>
+          </tr>
+          
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<style>
+  body {
+    background-color: #f0f8ff;
+    font-family: sans-serif;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #008CBA;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  .section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .section .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 24%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  .section .item h3 {
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+  .section .item p {
+    margin: 0;
+    font-size: 16px;
+  }
+  .form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .form .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .form .input-group label {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  .form .input-group input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .form .input-group input[type="radio"] {
+    margin-right: 5px;
+  }
+  .form .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .select .mes {
+    width: 200px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #d01111;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  .movimentos {
+    margin-top: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .deletar {
+    background-color: #d01111;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+</html>
