@@ -68,8 +68,8 @@ app.get('/deletar/:id', function (req, res) {
 
 
 
-
-
+console.log("lucas teste")
+//teste
 
 
 
